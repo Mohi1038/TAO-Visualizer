@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  /* Academic / Enterprise Theme (Light Mode Default) */
+  --bg-main: #f8f9fa;
+  --bg-panel: #ffffff;
+  --bg-sidebar: #f1f3f5;
+  --border-color: #dee2e6;
+  --text-main: #212529;
+  --text-muted: #6c757d;
+  
+  --accent-primary: #0056b3;
+  --accent-hover: #004494;
+  
+  /* Academic Colors */
+  --node-client: #17a2b8;
+  --node-cache: #ffc107;
+  --node-app: #6f42c1;
+  --node-db: #dc3545;
+  --link-color: #adb5bd;
+  --link-active: #0056b3;
+  
+  /* Structural variables */
+  --sidebar-width: 280px;
+  --header-height: 50px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Structural Layout Components */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.header-bar {
+  height: var(--header-height);
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  z-index: 100;
+}
+
+.workspace {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+  box-shadow: 1px 0 3px rgba(0,0,0,0.02);
+}
+
+.inspector-sidebar {
+  width: 320px;
+  background-color: var(--bg-panel);
+  border-left: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+  box-shadow: -1px 0 3px rgba(0,0,0,0.02);
+}
+
+.canvas-area {
+  flex: 1;
+  position: relative;
+  background-color: var(--bg-main);
+  background-image: 
+    linear-gradient(to right, #e9ecef 1px, transparent 1px),
+    linear-gradient(to bottom, #e9ecef 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Typography and Elements */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.monospace {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.panel-section {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.panel-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+button.primary {
+  background-color: var(--accent-primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+button.primary:hover {
+  background-color: var(--accent-hover);
+}
+
+/* D3 Elements */
+.graph-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.node {
+  cursor: grab;
+}
+
+.node:active {
+  cursor: grabbing;
+}
+
+.node.selected rect, .node.selected circle {
+  stroke: var(--accent-primary) !important;
+  stroke-width: 3px !important;
+}
+
+.link {
+  stroke: var(--link-color);
+  stroke-width: 2px;
+}
+
+.link.drawing {
+  stroke: var(--accent-primary);
+  stroke-dasharray: 4;
+}
+
+/* Simulation State Highlights */
+.node.sim-active rect, .node.sim-active circle {
+  stroke: var(--accent-primary) !important;
+  stroke-width: 4px !important;
+  fill: #e9ecef !important;
+}
+
+.link.sim-active {
+  stroke: var(--accent-primary) !important;
+  stroke-width: 4px !important;
+}
